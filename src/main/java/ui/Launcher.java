@@ -10,6 +10,7 @@ public class Launcher extends Application {
         SceneManager.showLogin(stage);
     }
 
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
         launch(args);
     }

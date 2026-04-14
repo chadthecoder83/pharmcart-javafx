@@ -1,18 +1,13 @@
 package ui;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class LoginView extends Application {
+public class LoginView {
 
-    @Override
     public void start(Stage stage) {
         Label titleLabel = new Label("PharmCart Login");
 
@@ -26,10 +21,7 @@ public class LoginView extends Application {
         Label messageLabel = new Label();
 
         loginButton.setOnAction(e -> {
-            String username = usernameField.getText();
-            String password = passwordField.getText();
-
-            if (username.isEmpty() || password.isEmpty()) {
+            if (usernameField.getText().isEmpty() || passwordField.getText().isEmpty()) {
                 messageLabel.setText("Fields cannot be empty");
             } else {
                 SceneManager.showProducts(stage);
@@ -46,9 +38,8 @@ public class LoginView extends Application {
                 messageLabel
         );
 
-        Scene scene = new Scene(root, 300, 250);
-        stage.setTitle("PharmCart Login");
-        stage.setScene(scene);
+        stage.setScene(new Scene(root, 300, 250));
+        stage.setTitle("Login");
         stage.show();
     }
 }

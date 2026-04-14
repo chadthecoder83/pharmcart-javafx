@@ -12,16 +12,17 @@ public class ProductView {
         Label titleLabel = new Label("Available Products");
 
         ListView<String> productList = new ListView<>();
-        productList.getItems().add("Tylenol - $8.99");
-        productList.getItems().add("Advil - $7.99");
-        productList.getItems().add("Benadryl - $6.49");
+        productList.getItems().addAll(
+                "Tylenol - $8.99",
+                "Advil - $7.99",
+                "Benadryl - $6.49"
+        );
 
         VBox root = new VBox(10);
         root.getChildren().addAll(titleLabel, productList);
 
-        Scene scene = new Scene(root, 300, 250);
-        stage.setTitle("PharmCart Products");
-        stage.setScene(scene);
+        stage.setScene(new Scene(root, 300, 250));
+        stage.setTitle("Products");
         stage.show();
     }
 }
