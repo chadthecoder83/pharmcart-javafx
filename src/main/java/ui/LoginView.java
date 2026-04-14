@@ -3,7 +3,10 @@ package ui;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -29,7 +32,7 @@ public class LoginView extends Application {
             if (username.isEmpty() || password.isEmpty()) {
                 messageLabel.setText("Fields cannot be empty");
             } else {
-                messageLabel.setText("Login successful");
+                SceneManager.showProducts(stage);
             }
         });
 
@@ -47,9 +50,5 @@ public class LoginView extends Application {
         stage.setTitle("PharmCart Login");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }

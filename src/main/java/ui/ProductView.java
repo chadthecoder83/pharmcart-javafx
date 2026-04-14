@@ -1,15 +1,13 @@
 package ui;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ProductView extends Application {
+public class ProductView {
 
-    @Override
     public void start(Stage stage) {
         Label titleLabel = new Label("Available Products");
 
@@ -25,9 +23,5 @@ public class ProductView extends Application {
         stage.setTitle("PharmCart Products");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }
