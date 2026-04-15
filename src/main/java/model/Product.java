@@ -1,5 +1,12 @@
 package model;
 
+/*
+ * Name: Chadwick Smith
+ * Course: CST 338
+ * Project: PharmCart - Pharmacy E-Commerce Application
+ * Description: Product model class used for pharmacy inventory records.
+ */
+
 public class Product {
     private int productId;
     private String name;

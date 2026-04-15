@@ -7,6 +7,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Name: Chadwick Smith
+ * Course: CST 338
+ * Project: PharmCart - Pharmacy E-Commerce Application
+ * Description: Provides CRUD operations for products in the SQLite database.
+ */
+
 public class ProductDao {
 
     public void insertProduct(Product product) {

@@ -3,6 +3,13 @@ package database;
 import java.sql.Connection;
 import java.sql.Statement;
 
+/*
+ * Name: Chadwick Smith
+ * Course: CST 338
+ * Project: PharmCart - Pharmacy E-Commerce Application
+ * Description: Initializes the database schema for users, products, and orders.
+ */
+
 public class DatabaseInitializer {
 
     public static void initializeDatabase() {
