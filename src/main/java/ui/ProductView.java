@@ -6,6 +6,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * PharmCart JavaFX Application
+ * Course: CST 338
+ * @author Elizabeth Leon
+ * @since 4-14-26
+ * Description: Displays a list of available pharmacy products.
+ */
 public class ProductView {
 
     public void start(Stage stage) {
