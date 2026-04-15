@@ -6,6 +6,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * PharmCart JavaFX Application
+ * Course: CST 338
+ * @author Elizabeth Leon
+ * @since 4-14-26
+ * Description: Handles the login user interface and basic validation. Navigates to the product screen upon successful login.
+ */
 public class LoginView {
 
     public void start(Stage stage) {
