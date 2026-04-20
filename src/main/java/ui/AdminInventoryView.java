@@ -47,7 +47,12 @@ public class AdminInventoryView extends Application {
             }
         });
 
-        loadProducts();
+        try {
+            loadProducts();
+        } catch (Exception e) {
+            messageLabel.setText("Could not load products");
+            e.printStackTrace();
+        }
 
         VBox root = new VBox(10,
                 titleLabel,
@@ -64,8 +69,7 @@ public class AdminInventoryView extends Application {
 
         root.setPadding(new Insets(20));
 
-        Scene scene = new Scene(root, 400, 550);
-        stage.setScene(scene);
+        stage.setScene(new Scene(root, 400, 550));
         stage.setTitle("PharmCart Admin Inventory");
         stage.show();
     }
@@ -102,6 +106,7 @@ public class AdminInventoryView extends Application {
 
         } catch (Exception e) {
             messageLabel.setText("Invalid input. Check price and stock.");
+            e.printStackTrace();
         }
     }
 
@@ -127,21 +132,28 @@ public class AdminInventoryView extends Application {
 
         } catch (Exception e) {
             messageLabel.setText("Invalid input. Check price and stock.");
+            e.printStackTrace();
         }
     }
 
     private void deleteProduct() {
-        Product selected = productListView.getSelectionModel().getSelectedItem();
+        try {
+            Product selected = productListView.getSelectionModel().getSelectedItem();
 
-        if (selected == null) {
-            messageLabel.setText("Select a product first");
-            return;
+            if (selected == null) {
+                messageLabel.setText("Select a product first");
+                return;
+            }
+
+            productDao.deleteProduct(selected.getProductId());
+            messageLabel.setText("Product deleted successfully");
+            clearFields();
+            loadProducts();
+
+        } catch (Exception e) {
+            messageLabel.setText("Delete failed");
+            e.printStackTrace();
         }
-
-        productDao.deleteProduct(selected.getProductId());
-        messageLabel.setText("Product deleted successfully");
-        clearFields();
-        loadProducts();
     }
 
     public static void main(String[] args) {
