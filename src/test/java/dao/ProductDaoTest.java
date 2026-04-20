@@ -15,7 +15,6 @@ public class ProductDaoTest {
 
     @BeforeEach
     void setUp() {
-        // Initialize database and DAO before each test
         DatabaseInitializer.initializeDatabase();
         productDao = new ProductDao();
     }
@@ -28,7 +27,7 @@ public class ProductDaoTest {
         List<Product> products = productDao.getAllProducts();
 
         boolean found = products.stream()
-                .anyMatch(p -> p.getName().equals("Advil"));
+                .anyMatch(p -> p.getName().equals("Advil") && p.getCategory().equals("Pain Relief"));
 
         assertTrue(found, "Product should be inserted into database");
     }
@@ -44,20 +43,36 @@ public class ProductDaoTest {
     }
 
     @Test
-    void testDeleteProduct() {
+    void testUpdateProduct() {
         Product product = new Product("Tylenol", "Pain Relief", 8.99, 10);
         productDao.insertProduct(product);
 
         List<Product> products = productDao.getAllProducts();
-        int id = products.get(0).getProductId();
+        Product insertedProduct = products.get(products.size() - 1);
 
-        productDao.deleteProduct(id);
+        insertedProduct.setPrice(10.99);
+        insertedProduct.setQuantityInStock(30);
+        productDao.updateProduct(insertedProduct);
 
-        List<Product> updatedProducts = productDao.getAllProducts();
+        Product updatedProduct = productDao.getProductById(insertedProduct.getProductId());
 
-        boolean exists = updatedProducts.stream()
-                .anyMatch(p -> p.getProductId() == id);
+        assertNotNull(updatedProduct, "Updated product should still exist");
+        assertEquals(10.99, updatedProduct.getPrice(), 0.001, "Product price should be updated");
+        assertEquals(30, updatedProduct.getQuantityInStock(), "Product stock should be updated");
+    }
 
-        assertFalse(exists, "Product should be deleted from database");
+    @Test
+    void testDeleteProduct() {
+        Product product = new Product("DeleteMe", "Test", 4.99, 5);
+        productDao.insertProduct(product);
+
+        List<Product> products = productDao.getAllProducts();
+        Product insertedProduct = products.get(products.size() - 1);
+
+        productDao.deleteProduct(insertedProduct.getProductId());
+
+        Product deletedProduct = productDao.getProductById(insertedProduct.getProductId());
+
+        assertNull(deletedProduct, "Product should be deleted from database");
     }
 }
