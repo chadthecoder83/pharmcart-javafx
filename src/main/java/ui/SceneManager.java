@@ -19,4 +19,12 @@ public class SceneManager {
             System.err.println("Error loading products: " + e.getMessage());
         }
     }
+
+    public static void showAdmin(Stage stage) {
+        try {
+            new AdminInventoryView().start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
