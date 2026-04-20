@@ -13,62 +13,43 @@ public class LoginView extends Application {
 
     @Override
     public void start(Stage stage) {
-
-        // Title
         Label titleLabel = new Label("PharmCart Login");
 
-        // Username field
         TextField usernameField = new TextField();
         usernameField.setPromptText("Enter username");
 
-        // Password field
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Enter password");
 
-        // Buttons
         Button loginButton = new Button("Login");
         Button registerButton = new Button("Register");
 
-        // Message label
         Label messageLabel = new Label();
 
-        // Login button logic
         loginButton.setOnAction(e -> {
-
             String username = usernameField.getText().trim();
             String password = passwordField.getText().trim();
 
-            // Basic validation
             if (username.isEmpty() || password.isEmpty()) {
                 messageLabel.setText("Username and password cannot be empty");
                 return;
             }
 
-            // Check database
             UserDao userDao = new UserDao();
             User user = userDao.authenticateUser(username, password);
 
             if (user == null) {
                 messageLabel.setText("Invalid username or password");
             } else if ("admin".equalsIgnoreCase(user.getRole())) {
-                messageLabel.setText("Welcome Admin!");
                 SceneManager.showAdmin(stage);
             } else {
-                messageLabel.setText("Welcome User!");
                 SceneManager.showProducts(stage);
             }
         });
 
-        // Register button logic (simple placeholder)
-        registerButton.setOnAction(e -> {
-            messageLabel.setText("Register feature coming soon");
-        });
+        registerButton.setOnAction(e -> messageLabel.setText("Register feature coming soon"));
 
-        // Layout
-        VBox root = new VBox(10);
-        root.setPadding(new Insets(20));
-
-        root.getChildren().addAll(
+        VBox root = new VBox(10,
                 titleLabel,
                 new Label("Username"),
                 usernameField,
@@ -78,11 +59,10 @@ public class LoginView extends Application {
                 registerButton,
                 messageLabel
         );
+        root.setPadding(new Insets(20));
 
-        // Scene setup
-        Scene scene = new Scene(root, 300, 300);
+        stage.setScene(new Scene(root, 320, 300));
         stage.setTitle("PharmCart Login");
-        stage.setScene(scene);
         stage.show();
     }
 
