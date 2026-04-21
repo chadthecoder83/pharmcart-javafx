@@ -8,7 +8,6 @@
  * Displays the registration screen and allows new users to sign up.
  *
  */
-
 package ui;
 
 import dao.UserDao;
