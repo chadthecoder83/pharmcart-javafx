@@ -8,7 +8,7 @@ public class SceneManager {
         try {
             new LoginView().start(stage);
         } catch (Exception e) {
-            System.err.println("Error loading login: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -16,7 +16,15 @@ public class SceneManager {
         try {
             new ProductView().start(stage);
         } catch (Exception e) {
-            System.err.println("Error loading products: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void showAdmin(Stage stage) {
+        try {
+            new AdminInventoryView().start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
