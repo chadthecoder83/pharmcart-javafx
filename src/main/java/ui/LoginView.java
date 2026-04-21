@@ -1,3 +1,14 @@
+/*
+ * PharmCart JavaFX Application
+ * Course: CST 338
+ *
+ * @author Elizabeth Leon
+ * @since 4/20/26
+ * Description:
+ * Handles user login and navigation to product or admin views.
+ *
+ */
+
 package ui;
 
 import dao.UserDao;
@@ -26,6 +37,7 @@ public class LoginView extends Application {
 
         Label messageLabel = new Label();
 
+        // LOGIN BUTTON LOGIC (DO NOT CHANGE Chad's logic)
         loginButton.setOnAction(e -> {
             String username = usernameField.getText().trim();
             String password = passwordField.getText().trim();
@@ -35,20 +47,27 @@ public class LoginView extends Application {
                 return;
             }
 
-            UserDao userDao = new UserDao();
-            User user = userDao.authenticateUser(username, password);
+            try {
+                UserDao userDao = new UserDao();
+                User user = userDao.authenticateUser(username, password);
 
-            if (user == null) {
-                messageLabel.setText("Invalid username or password");
-            } else if ("admin".equalsIgnoreCase(user.getRole())) {
-                SceneManager.showAdmin(stage);
-            } else {
-                SceneManager.showProducts(stage);
+                if (user == null) {
+                    messageLabel.setText("Invalid username or password");
+                } else if ("admin".equalsIgnoreCase(user.getRole())) {
+                    SceneManager.showAdmin(stage);
+                } else {
+                    SceneManager.showProducts(stage);
+                }
+            } catch (Exception ex) {
+                messageLabel.setText("Login error");
+                System.err.println("Login error: " + ex.getMessage());
             }
         });
 
-        registerButton.setOnAction(e -> messageLabel.setText("Register feature coming soon"));
+        // REGISTER BUTTON (your part)
+        registerButton.setOnAction(e -> SceneManager.showRegister(stage));
 
+        // UI layout
         VBox root = new VBox(10,
                 titleLabel,
                 new Label("Username"),
@@ -59,6 +78,7 @@ public class LoginView extends Application {
                 registerButton,
                 messageLabel
         );
+
         root.setPadding(new Insets(20));
 
         stage.setScene(new Scene(root, 320, 300));
