@@ -30,7 +30,7 @@ public class ProductView {
 
     public void start(Stage stage) {
         Label titleLabel = new Label("Available Pharmacy Products");
-
+        Label subtitle = new Label("Select products to add to your cart");
         Button refreshButton = new Button("Refresh");
         Button addToCartButton = new Button("Add Selected to Cart");
         Button viewCartButton = new Button("View Cart");
@@ -54,12 +54,16 @@ public class ProductView {
         });
 
         viewCartButton.setOnAction(e -> SceneManager.showCart(stage));
-        backToLoginButton.setOnAction(e -> SceneManager.showLogin(stage));
+        backToLoginButton.setOnAction(e -> {
+            CartManager.clearCart();
+            SceneManager.showLogin(stage);
+        });
 
         loadProducts(messageLabel);
 
         VBox root = new VBox(10,
                 titleLabel,
+                subtitle,
                 productListView,
                 refreshButton,
                 addToCartButton,

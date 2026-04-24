@@ -6,7 +6,7 @@
  *
  * Description:
  * Stores cart items during the current application session.
- *
+ * Note: Cart is session-based and clears when the user logs out
  */
 
 package ui;
