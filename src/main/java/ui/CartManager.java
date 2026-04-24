@@ -6,8 +6,7 @@
  *
  * Description:
  * Stores cart items during the current application session.
- * GitHub Issue: #18
- * Branch: elizabeth/cart-checkout-flow
+ *
  */
 
 package ui;
@@ -22,6 +21,10 @@ public class CartManager {
 
     public static void addProduct(Product product) {
         cartItems.add(product);
+    }
+
+    public static void removeProduct(Product product) {
+        cartItems.remove(product);
     }
 
     public static List<Product> getCartItems() {
