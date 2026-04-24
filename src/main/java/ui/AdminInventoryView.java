@@ -34,6 +34,9 @@ public class AdminInventoryView extends Application {
         Button updateButton = new Button("Update");
         Button deleteButton = new Button("Delete");
 
+        Button backToLoginButton = new Button("Back to Login");
+        backToLoginButton.setOnAction(e -> SceneManager.showLogin(stage));
+
         addButton.setOnAction(e -> addProduct());
         updateButton.setOnAction(e -> updateProduct());
         deleteButton.setOnAction(e -> deleteProduct());

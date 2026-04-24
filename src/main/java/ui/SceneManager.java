@@ -2,12 +2,15 @@
  * PharmCart JavaFX Application
  * Course: CST 338
  *
- * @author Elizabeth Leon
- * @since 4/20/26
- * Description:
- * Manages navigation between login, product, admin, and registration screens.
+ * Author: Elizabeth Leon
  *
+ * Description:
+ * Manages navigation between login, products, admin, registration, and cart views.
+ *
+ * GitHub Issue: #17
+ * Branch: elizabeth/cart-checkout-flow
  */
+
 package ui;
 
 import javafx.stage.Stage;
@@ -43,6 +46,14 @@ public class SceneManager {
             new RegistrationView().start(stage);
         } catch (Exception e) {
             System.err.println("Error loading registration: " + e.getMessage());
+        }
+    }
+
+    public static void showCart(Stage stage) {
+        try {
+            new CartView().start(stage);
+        } catch (Exception e) {
+            System.err.println("Error loading cart: " + e.getMessage());
         }
     }
 }

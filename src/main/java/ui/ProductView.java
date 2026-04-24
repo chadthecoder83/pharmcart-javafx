@@ -2,10 +2,10 @@
  * PharmCart JavaFX Application
  * Course: CST 338
  *
- * @author Elizabeth Leon
- * @since 4/20/26
+ * Author: Elizabeth Leon
+ *
  * Description:
- * Displays pharmacy products loaded from the database.
+ * Displays products, allows users to add products to cart, and navigate to cart or login.
  *
  */
 
@@ -32,6 +32,9 @@ public class ProductView {
         Label titleLabel = new Label("Available Pharmacy Products");
 
         Button refreshButton = new Button("Refresh");
+        Button addToCartButton = new Button("Add Selected to Cart");
+        Button viewCartButton = new Button("View Cart");
+        Button backToLoginButton = new Button("Back to Login");
         Label messageLabel = new Label();
 
         refreshButton.setOnAction(e -> {
@@ -39,12 +42,35 @@ public class ProductView {
             messageLabel.setText("Product list refreshed");
         });
 
+        addToCartButton.setOnAction(e -> {
+            Product selected = productListView.getSelectionModel().getSelectedItem();
+
+            if (selected == null) {
+                messageLabel.setText("Please select a product first");
+            } else {
+                CartManager.addProduct(selected);
+                messageLabel.setText(selected.getName() + " added to cart");
+            }
+        });
+
+        viewCartButton.setOnAction(e -> SceneManager.showCart(stage));
+        backToLoginButton.setOnAction(e -> SceneManager.showLogin(stage));
+
         loadProducts(messageLabel);
 
-        VBox root = new VBox(10, titleLabel, productListView, refreshButton, messageLabel);
+        VBox root = new VBox(10,
+                titleLabel,
+                productListView,
+                refreshButton,
+                addToCartButton,
+                viewCartButton,
+                backToLoginButton,
+                messageLabel
+        );
+
         root.setPadding(new Insets(20));
 
-        stage.setScene(new Scene(root, 450, 400));
+        stage.setScene(new Scene(root, 450, 450));
         stage.setTitle("PharmCart Products");
         stage.show();
     }
