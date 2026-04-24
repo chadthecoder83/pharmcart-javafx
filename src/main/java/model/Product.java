@@ -77,4 +77,5 @@ public class Product {
         return name + " | " + category + " | $" + price + " | Stock: " + quantityInStock;
     }
 
+
 }
